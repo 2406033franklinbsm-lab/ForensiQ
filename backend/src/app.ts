@@ -4,6 +4,7 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
+import casesRouter from './routes/cases';
 
 const app = express();
 const PORT = Number(process.env.PORT) || 5000;
@@ -24,7 +25,8 @@ app.get('/api/db-check', async (_req, res) => {
     console.error(err);
     res.status(500).json({ status: 'error', message: 'Database connection failed' });
   }
-});
+}); 
+app.use('/api/cases', casesRouter);
 app.listen(PORT, () => {
   console.log(`Backend running on http://localhost:${PORT}`);
 });
