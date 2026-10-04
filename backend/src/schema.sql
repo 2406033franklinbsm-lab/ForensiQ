@@ -1,0 +1,19 @@
+CREATE TABLE IF NOT EXISTS cases (
+  id SERIAL PRIMARY KEY,
+  case_number VARCHAR(50) UNIQUE NOT NULL,
+  title VARCHAR(200) NOT NULL,
+  description TEXT,
+  location VARCHAR(200),
+  status VARCHAR(20) NOT NULL DEFAULT 'open',
+  created_at TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS evidence (
+  id SERIAL PRIMARY KEY,
+  case_id INTEGER NOT NULL REFERENCES cases(id) ON DELETE CASCADE,
+  file_name VARCHAR(255) NOT NULL,
+  file_type VARCHAR(50),
+  file_path TEXT NOT NULL,
+  sha256_hash CHAR(64) NOT NULL,
+  uploaded_at TIMESTAMP NOT NULL DEFAULT NOW()
+);

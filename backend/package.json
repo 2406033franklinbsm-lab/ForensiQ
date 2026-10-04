@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
+  "scripts": {      
     "dev": "ts-node-dev --respawn --transpile-only src/app.ts",
-    "build": "tsc",
+    "db:init": "ts-node --transpile-only src/initDb.ts",    "build": "tsc",
     "start": "node dist/app.js"
   },
   "keywords": [],
